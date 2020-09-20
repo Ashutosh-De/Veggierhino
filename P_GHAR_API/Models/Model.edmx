@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PAKGHARModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="PA_DELIVERYBOY_DETAILS">
+          <Key>
+            <PropertyRef Name="DELIVERYBOY_ID" />
+          </Key>
+          <Property Name="DELIVERYBOY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DELIVERYBOY_NAME" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="MOBILENO" Type="varchar" MaxLength="200" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PA_MASTER_GENERAL">
+          <Key>
+            <PropertyRef Name="CODEYPE" />
+            <PropertyRef Name="CODEID" />
+          </Key>
+          <Property Name="CODEYPE" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CODEID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="CODEDESC" Type="varchar" MaxLength="100" />
+          <Property Name="CODEACCESS" Type="bit" />
+        </EntityType>
+        <EntityType Name="PA_MASTER_ITEM">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_NAME" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ITEM_DESCRIPTION" Type="nvarchar" MaxLength="100" />
+          <Property Name="ISACTIVE" Type="bit" Nullable="false" />
+          <Property Name="ITEM_PRICE" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="ITEM_PHOTO" Type="varbinary(max)" />
+          <Property Name="ITEM_CATEGORY" Type="varchar" MaxLength="50" />
+          <Property Name="ITEM_UNIT" Type="varchar" MaxLength="50" />
+          <Property Name="ITEM_QUANTITY" Type="numeric" Precision="18" Scale="2" />
+          <Property Name="CREATEDBY" Type="varchar" MaxLength="100" />
+          <Property Name="ENTRYON" Type="datetime" />
+          <Property Name="UPDATEDBY" Type="varchar" MaxLength="100" />
+          <Property Name="UPDATEON" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PA_MASTER_USER">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="USERNAME" Type="varchar" MaxLength="50" />
+          <Property Name="USERPASSWORD" Type="varchar" MaxLength="100" />
+          <Property Name="EMAILID" Type="varchar" MaxLength="100" />
+          <Property Name="MOBILENO" Type="varchar" MaxLength="100" />
+          <Property Name="ISACTIVE" Type="bit" />
+          <Property Name="ISADMIN" Type="bit" />
+        </EntityType>
+        <EntityType Name="PA_MOB_APP_TOKEN_AUTH">
+          <Key>
+            <PropertyRef Name="S_NO" />
+          </Key>
+          <Property Name="S_NO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LOGIN_ID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DEVICE_ID" Type="varchar" MaxLength="100" />
+          <Property Name="TOKEN" Type="varchar" MaxLength="100" />
+          <Property Name="C_ON" Type="date" />
+          <Property Name="U_ON" Type="date" />
+        </EntityType>
+        <EntityType Name="PA_MOB_CUST_SIGHN_UP">
+          <Key>
+            <PropertyRef Name="CUST_ID" />
+          </Key>
+          <Property Name="CUST_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="LAST_NAME" Type="varchar" MaxLength="100" />
+          <Property Name="EMAIL_ID" Type="nvarchar" MaxLength="100" />
+          <Property Name="MOBILE_NO" Type="nvarchar" MaxLength="50" />
+          <Property Name="PASSWORD" Type="varchar" MaxLength="100" />
+          <Property Name="C_ON" Type="varchar" MaxLength="100" />
+          <Property Name="ISACTIVE" Type="bit" />
+          <Property Name="ADDRESS" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PA_ORDER_DETAILS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="SRNO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDER_ID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="DELIVERY_BOYID" Type="nvarchar" MaxLength="500" />
+          <Property Name="DELIVERY_ADDRESS" Type="nvarchar" MaxLength="500" />
+          <Property Name="CUSTOMER_ID" Type="nvarchar" MaxLength="500" />
+          <Property Name="IS_ORDER_CONFIRM" Type="bit" Nullable="false" />
+          <Property Name="REMARKS" Type="nvarchar" MaxLength="100" />
+          <Property Name="IS_DELIVERED" Type="bit" Nullable="false" />
+          <Property Name="IS_REJECT" Type="bit" Nullable="false" />
+          <Property Name="REJECT_REASON" Type="varchar" MaxLength="100" />
+          <Property Name="IS_CANCEL" Type="bit" Nullable="false" />
+          <Property Name="CANCEL_REASON" Type="varchar" MaxLength="100" />
+          <Property Name="TranscationID" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="PA_ORDER_DETIAL_DESC">
+          <Key>
+            <PropertyRef Name="SR_NO" />
+          </Key>
+          <Property Name="SR_NO" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ORDER_ID" Type="varchar" MaxLength="200" />
+          <Property Name="ITEMID_ID" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TEMP_PA_CART_DATA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ITEM_ID" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="QUANTITY" Type="nvarchar" MaxLength="100" />
+          <Property Name="CUSTOMER_ID" Type="nvarchar" MaxLength="100" />
+          <Property Name="CREATED_ON" Type="datetime" />
+          <Property Name="ISACTIVE" Type="bit" />
+        </EntityType>
+        <EntityContainer Name="PAKGHARModelStoreContainer">
+          <EntitySet Name="PA_DELIVERYBOY_DETAILS" EntityType="Self.PA_DELIVERYBOY_DETAILS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_MASTER_GENERAL" EntityType="Self.PA_MASTER_GENERAL" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_MASTER_ITEM" EntityType="Self.PA_MASTER_ITEM" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_MASTER_USER" EntityType="Self.PA_MASTER_USER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_MOB_APP_TOKEN_AUTH" EntityType="Self.PA_MOB_APP_TOKEN_AUTH" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_MOB_CUST_SIGHN_UP" EntityType="Self.PA_MOB_CUST_SIGHN_UP" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_ORDER_DETAILS" EntityType="Self.PA_ORDER_DETAILS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PA_ORDER_DETIAL_DESC" EntityType="Self.PA_ORDER_DETIAL_DESC" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TEMP_PA_CART_DATA" EntityType="Self.TEMP_PA_CART_DATA" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PAKGHARModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="PA_DELIVERYBOY_DETAILS">
+          <Key>
+            <PropertyRef Name="DELIVERYBOY_ID" />
+          </Key>
+          <Property Name="DELIVERYBOY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DELIVERYBOY_NAME" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MOBILENO" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PA_MASTER_GENERAL">
+          <Key>
+            <PropertyRef Name="CODEYPE" />
+            <PropertyRef Name="CODEID" />
+          </Key>
+          <Property Name="CODEYPE" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODEID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CODEDESC" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CODEACCESS" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PA_MASTER_ITEM">
+          <Key>
+            <PropertyRef Name="ITEM_ID" />
+          </Key>
+          <Property Name="ITEM_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ITEM_DESCRIPTION" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ISACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="ITEM_PRICE" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ITEM_PHOTO" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="ITEM_CATEGORY" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ITEM_UNIT" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ITEM_QUANTITY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CREATEDBY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ENTRYON" Type="DateTime" Precision="3" />
+          <Property Name="UPDATEDBY" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="UPDATEON" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="PA_MASTER_USER">
+          <Key>
+            <PropertyRef Name="USERID" />
+          </Key>
+          <Property Name="USERID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="USERNAME" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="USERPASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAILID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MOBILENO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISACTIVE" Type="Boolean" />
+          <Property Name="ISADMIN" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="PA_MOB_APP_TOKEN_AUTH">
+          <Key>
+            <PropertyRef Name="S_NO" />
+          </Key>
+          <Property Name="S_NO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LOGIN_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DEVICE_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TOKEN" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="C_ON" Type="DateTime" Precision="0" />
+          <Property Name="U_ON" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="PA_MOB_CUST_SIGHN_UP">
+          <Key>
+            <PropertyRef Name="CUST_ID" />
+          </Key>
+          <Property Name="CUST_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="EMAIL_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MOBILE_NO" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PASSWORD" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="C_ON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ISACTIVE" Type="Boolean" />
+          <Property Name="ADDRESS" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PA_ORDER_DETAILS">
+          <Key>
+            <PropertyRef Name="ORDER_ID" />
+          </Key>
+          <Property Name="SRNO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DELIVERY_BOYID" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DELIVERY_ADDRESS" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CUSTOMER_ID" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ORDER_CONFIRM" Type="Boolean" Nullable="false" />
+          <Property Name="REMARKS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IS_DELIVERED" Type="Boolean" Nullable="false" />
+          <Property Name="IS_REJECT" Type="Boolean" Nullable="false" />
+          <Property Name="REJECT_REASON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="IS_CANCEL" Type="Boolean" Nullable="false" />
+          <Property Name="CANCEL_REASON" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TranscationID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PA_ORDER_DETIAL_DESC">
+          <Key>
+            <PropertyRef Name="SR_NO" />
+          </Key>
+          <Property Name="SR_NO" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ORDER_ID" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="ITEMID_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="TEMP_PA_CART_DATA">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ITEM_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="QUANTITY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CUSTOMER_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CREATED_ON" Type="DateTime" Precision="3" />
+          <Property Name="ISACTIVE" Type="Boolean" />
+        </EntityType>
+        <EntityContainer Name="VeggierhinoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="PA_DELIVERYBOY_DETAILS" EntityType="Self.PA_DELIVERYBOY_DETAILS" />
+          <EntitySet Name="PA_MASTER_GENERAL" EntityType="Self.PA_MASTER_GENERAL" />
+          <EntitySet Name="PA_MASTER_ITEM" EntityType="Self.PA_MASTER_ITEM" />
+          <EntitySet Name="PA_MASTER_USER" EntityType="Self.PA_MASTER_USER" />
+          <EntitySet Name="PA_MOB_APP_TOKEN_AUTH" EntityType="Self.PA_MOB_APP_TOKEN_AUTH" />
+          <EntitySet Name="PA_MOB_CUST_SIGHN_UP" EntityType="Self.PA_MOB_CUST_SIGHN_UP" />
+          <EntitySet Name="PA_ORDER_DETAILS" EntityType="Self.PA_ORDER_DETAILS" />
+          <EntitySet Name="PA_ORDER_DETIAL_DESC" EntityType="Self.PA_ORDER_DETIAL_DESC" />
+          <EntitySet Name="TEMP_PA_CART_DATA" EntityType="Self.TEMP_PA_CART_DATA" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PAKGHARModelStoreContainer" CdmEntityContainer="VeggierhinoEntities">
+          <EntitySetMapping Name="PA_DELIVERYBOY_DETAILS">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_DELIVERYBOY_DETAILS">
+              <MappingFragment StoreEntitySet="PA_DELIVERYBOY_DETAILS">
+                <ScalarProperty Name="DELIVERYBOY_ID" ColumnName="DELIVERYBOY_ID" />
+                <ScalarProperty Name="DELIVERYBOY_NAME" ColumnName="DELIVERYBOY_NAME" />
+                <ScalarProperty Name="MOBILENO" ColumnName="MOBILENO" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_MASTER_GENERAL">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_MASTER_GENERAL">
+              <MappingFragment StoreEntitySet="PA_MASTER_GENERAL">
+                <ScalarProperty Name="CODEYPE" ColumnName="CODEYPE" />
+                <ScalarProperty Name="CODEID" ColumnName="CODEID" />
+                <ScalarProperty Name="CODEDESC" ColumnName="CODEDESC" />
+                <ScalarProperty Name="CODEACCESS" ColumnName="CODEACCESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_MASTER_ITEM">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_MASTER_ITEM">
+              <MappingFragment StoreEntitySet="PA_MASTER_ITEM">
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="ITEM_NAME" ColumnName="ITEM_NAME" />
+                <ScalarProperty Name="ITEM_DESCRIPTION" ColumnName="ITEM_DESCRIPTION" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="ITEM_PRICE" ColumnName="ITEM_PRICE" />
+                <ScalarProperty Name="ITEM_PHOTO" ColumnName="ITEM_PHOTO" />
+                <ScalarProperty Name="ITEM_CATEGORY" ColumnName="ITEM_CATEGORY" />
+                <ScalarProperty Name="ITEM_UNIT" ColumnName="ITEM_UNIT" />
+                <ScalarProperty Name="ITEM_QUANTITY" ColumnName="ITEM_QUANTITY" />
+                <ScalarProperty Name="CREATEDBY" ColumnName="CREATEDBY" />
+                <ScalarProperty Name="ENTRYON" ColumnName="ENTRYON" />
+                <ScalarProperty Name="UPDATEDBY" ColumnName="UPDATEDBY" />
+                <ScalarProperty Name="UPDATEON" ColumnName="UPDATEON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_MASTER_USER">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_MASTER_USER">
+              <MappingFragment StoreEntitySet="PA_MASTER_USER">
+                <ScalarProperty Name="USERID" ColumnName="USERID" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="USERPASSWORD" ColumnName="USERPASSWORD" />
+                <ScalarProperty Name="EMAILID" ColumnName="EMAILID" />
+                <ScalarProperty Name="MOBILENO" ColumnName="MOBILENO" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="ISADMIN" ColumnName="ISADMIN" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_MOB_APP_TOKEN_AUTH">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_MOB_APP_TOKEN_AUTH">
+              <MappingFragment StoreEntitySet="PA_MOB_APP_TOKEN_AUTH">
+                <ScalarProperty Name="S_NO" ColumnName="S_NO" />
+                <ScalarProperty Name="LOGIN_ID" ColumnName="LOGIN_ID" />
+                <ScalarProperty Name="DEVICE_ID" ColumnName="DEVICE_ID" />
+                <ScalarProperty Name="TOKEN" ColumnName="TOKEN" />
+                <ScalarProperty Name="C_ON" ColumnName="C_ON" />
+                <ScalarProperty Name="U_ON" ColumnName="U_ON" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_MOB_CUST_SIGHN_UP">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_MOB_CUST_SIGHN_UP">
+              <MappingFragment StoreEntitySet="PA_MOB_CUST_SIGHN_UP">
+                <ScalarProperty Name="CUST_ID" ColumnName="CUST_ID" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="EMAIL_ID" ColumnName="EMAIL_ID" />
+                <ScalarProperty Name="MOBILE_NO" ColumnName="MOBILE_NO" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="C_ON" ColumnName="C_ON" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_ORDER_DETAILS">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_ORDER_DETAILS">
+              <MappingFragment StoreEntitySet="PA_ORDER_DETAILS">
+                <ScalarProperty Name="SRNO" ColumnName="SRNO" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="DELIVERY_BOYID" ColumnName="DELIVERY_BOYID" />
+                <ScalarProperty Name="DELIVERY_ADDRESS" ColumnName="DELIVERY_ADDRESS" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="IS_ORDER_CONFIRM" ColumnName="IS_ORDER_CONFIRM" />
+                <ScalarProperty Name="REMARKS" ColumnName="REMARKS" />
+                <ScalarProperty Name="IS_DELIVERED" ColumnName="IS_DELIVERED" />
+                <ScalarProperty Name="IS_REJECT" ColumnName="IS_REJECT" />
+                <ScalarProperty Name="REJECT_REASON" ColumnName="REJECT_REASON" />
+                <ScalarProperty Name="IS_CANCEL" ColumnName="IS_CANCEL" />
+                <ScalarProperty Name="CANCEL_REASON" ColumnName="CANCEL_REASON" />
+                <ScalarProperty Name="TranscationID" ColumnName="TranscationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PA_ORDER_DETIAL_DESC">
+            <EntityTypeMapping TypeName="PAKGHARModel.PA_ORDER_DETIAL_DESC">
+              <MappingFragment StoreEntitySet="PA_ORDER_DETIAL_DESC">
+                <ScalarProperty Name="SR_NO" ColumnName="SR_NO" />
+                <ScalarProperty Name="ORDER_ID" ColumnName="ORDER_ID" />
+                <ScalarProperty Name="ITEMID_ID" ColumnName="ITEMID_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TEMP_PA_CART_DATA">
+            <EntityTypeMapping TypeName="PAKGHARModel.TEMP_PA_CART_DATA">
+              <MappingFragment StoreEntitySet="TEMP_PA_CART_DATA">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ITEM_ID" ColumnName="ITEM_ID" />
+                <ScalarProperty Name="QUANTITY" ColumnName="QUANTITY" />
+                <ScalarProperty Name="CUSTOMER_ID" ColumnName="CUSTOMER_ID" />
+                <ScalarProperty Name="CREATED_ON" ColumnName="CREATED_ON" />
+                <ScalarProperty Name="ISACTIVE" ColumnName="ISACTIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
